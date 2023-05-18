@@ -45,6 +45,14 @@ conda create -n myenv_Spa3D python=3.8.8 pandas=1.3.4 numpy==1.20.1
 pip install numba==0.53.1 python-igraph torch louvain scipy scanpy anndata natsort sklearn
 ```
 
+When you install the package, if we find a package is not available or is not
+consistent with your system, my suggestion is to use the nearest version that 
+you could find. For example, if numpy==1.20.1 does not work with your system and
+the system messages tells you the earlist version that you could install is 
+numpy==1.21.0, please go ahead to install it and see if you could obtain the 
+same result with the notebook example below. I have tested numpy==1.21.0 using
+my workstation and it works. 
+
 After the environment is created, you can use the following command to activate 
 it:
 ```
@@ -72,37 +80,24 @@ you are using Python or Jupyter Notebook:
 import Spa3D
 ```
 
+Another option is to directly use
+```
+import __init__ as Spa3D
+```
+to import Spa3D in the current folder. This way is suggested if you would like 
+to development your own method based on this Spa3D software.
+
 # 4. Parameter setting
 
-SpaSNE has two key parameters: The global gene expression weight 𝛼 that balances 
-the prevervations of local and global gene expressions, and the spatial weight 𝛽 
-that balances gene expressions and the spatial structure. A larger 𝛼 leads to a 
-larger 𝑟1 and a smaller 𝑟2, while a larger 𝛽 leads to a larger 𝑟2 and a smaller 
-𝑟1. Thus, a proper ratio between 𝛼 and 𝛽 is required to give a relatively good 
-preservation of both the gene expressions and the spatial structure. The 
-following recommendations have been given for setting 𝛼 and 𝛽:  
+Most of the parameters have a default value. There are two parameters that I 
+think are the most important ones:
 
-𝛼 ∈ [5,15], 𝛽 ∈ [1,7.5], and 𝛼 / 𝛽 ≥ 2. 
-
-When the random seed is variable or not set, a large 𝛼 may result in a large 
-chance of embedding failure, especially for small (spatial samples) datasets. 
-For example, for the BreastCancer1272 dataset used as an example in this 
-software package, there was a higher chance of embedding failure when setting 𝛼 
-to 12 than setting it to 10 (𝛽 was also changed accordingly based on an 𝛼 / 𝛽 
-ratio). Therefore, for small datasets, it might be relatively stable when 
-setting 𝛼 not larger than 10. 
-
-In this software package, the default parameters have been set as (𝛼 = 8, 𝛽 = 2)
-when the input of the spatial information is available, and (𝛼 = 8, 𝛽 = 0) when 
-there is no input of the sptial information. 
-
-Please see the spasne.py file for the introduction of more parameters. 
 
 # 5. Examples
 
-__5.1. SpaSNE examples__
+__5.1. Spa3D examples__
 
-There are two SpaSNE examples in the "spasne-demos" folder.
+There are one Spa3D examples in the "Spa3D-demos" folder.
 ```
 cd spasne-demos
 ```
