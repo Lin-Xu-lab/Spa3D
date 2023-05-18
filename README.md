@@ -92,6 +92,22 @@ to development your own method based on this Spa3D software.
 Most of the parameters have a default value. There are two parameters that I 
 think are the most important ones:
 
+num_cluster: The number of clusters. 
+
+num_neighbors: The number of nearest neighbors for GCN clustering. 
+
+There are also some other parameters:
+
+p: This parameter adjusts the weights of the current cell and its nearest 
+neighbors when searching for the decal value, when p = 0.5, it means their 
+weights are equal. 
+
+start: This parameter determines the lowest value of the searching range for the
+decay value. 
+
+end: This parameter determines the highest value of the searching range for the 
+decay value. 
+
 
 # 5. Examples
 
@@ -99,7 +115,7 @@ __5.1. Spa3D examples__
 
 There are one Spa3D examples in the "Spa3D-demos" folder.
 ```
-cd spasne-demos
+cd Spa3D-demos
 ```
 __5.1.1__. Please use jupyter notebook to open the 
 spasne_VisualCortex1207_example.ipynb for the Mouse Visual Cortex example. This 
