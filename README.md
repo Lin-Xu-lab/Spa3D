@@ -108,54 +108,43 @@ decay value.
 end: This parameter determines the highest value of the searching range for the 
 decay value. 
 
+For introductions about other parameters, please see the *.py files. 
+
 
 # 5. Examples
 
-__5.1. Spa3D examples__
+__5.1. Spa3D example__
 
-There are one Spa3D examples in the "Spa3D-demos" folder.
+There are one Spa3D examples in the "Spa3D-example" folder.
 ```
-cd Spa3D-demos
+cd Spa3D-example
 ```
-__5.1.1__. Please use jupyter notebook to open the 
-spasne_VisualCortex1207_example.ipynb for the Mouse Visual Cortex example. This 
-demo took approximately 30 seconds to complete on my local computer. 
-
-__5.1.2__. Please use jupyter notebook to open the 
-spasne_BreastCancer1272_example.ipynb for the Human Breast Cancer example. This
-demo took approximately 33 seconds to complete on my local computer. 
-
-The annotation information for all the five datasets used in the paper are 
-listed in the data_annotation_info.xlsx file under the "data-annotation-info" 
-folder.
+Please use jupyter notebook to open the spagcn_heart3D_week6_20230510.ipynb for 
+the 3D human heart example. The input data is a 3D data with spatial pattern 
+enhancement. 
   
-__5.2. Preprocessing demos__
+__5.2. Preprocessing example__
 
-There is one preprocessing example in the "preprocessing-demo" folder. This demo
-took approximately 12 seconds to complete on my local computer. 
+There is one preprocessing example in the "Spa3D-preprocessing-example" folder. 
 ```
-cd preprocessing-demo
+cd preprocessing-example
 ```
-__5.2.1__. Please use Jupyter notebook to open the 
-preprocessing_BreastCancer1272_example.ipynb for the Human Breast Cancer example
-. Before running this file, please type the following command in the terminal to
-obtain the "data" folder: 	
-```
-tar xvzf data.tar.gz
-```
+This folder also includes the MPI code for spatial pattern enhancement. 
 
-__5.3. The notebook script for the example in 5.1.1__
+Please use Jupyter notebook to open the preprocessing_alignment.ipynb for the 
+Human Heart example.
+
+__5.3. The notebook script for Spa3D example__
 	
-Below is the notebook script for the Mouse Visual Cortex example. First, please 
-type
+Below is the notebook script for the Spa3D example in 5.1. First, please type
 ```
-cd spasne-demos
+cd Spa3D-example
 ```
-in the terminal to enter the "spasne-demos" folder.
+in the terminal to enter the "Spa3D-example" folder.
 
 Then, type
 ```
-jupyter notebook &
+python3 -m notebook &
 ```
 to open the Jupyter Notebook. Left click the 
 spasne_VisualCortex1207_example.ipynb file to open it. 
