@@ -272,50 +272,6 @@ for j in z_array_cluster:
         ax.scatter(dict_z_array[id], dict_x_pixel[id],dict_y_pixel[id], c=plot_color[i], linewidths = 2.0)
         i = i + 1
 ```
-Visualizing spots from t-SNE embedding
-```
-matplotlib.rcParams['font.size'] = 12.0
-fig, axes = plt.subplots(1, 1, figsize=(6,5))
-domains="gt"
-num_celltype=len(adata.obs[domains].unique())
-adata.uns[domains+"_colors"]=list(plot_color[:num_celltype])
-titles = 't-SNE, ' + 'r1 = %.2f'% quant_eval_tsne[0] + ', r2 = %.2f'%quant_eval_tsne[1] + ', s = %.2f'%quant_eval_tsne[2]
-ax=sc.pl.scatter(adata,alpha=1,x="tsne_pos_x",y="tsne_pos_y",color=domains,title=titles,color_map=plot_color,show=False,size=sz,ax = axes)
-ax.axis('off')
-
-```
-(-7.451521853408612, 9.16820293951664, -11.582022822788456, 9.920880900761276)
-![Fig](/images/mouse_visualCortex_t-SNE_result.png)
-
-Performing SpaSNE embedding
-```
-alpha = 9.0
-beta = 2.25
-spasne_pos = spasne.run_spasne(df_data, pixels = df_pixel, alpha = alpha, beta = beta, randseed = 5)
-dist_sq = euclidean_distances(spasne_pos, spasne_pos)
-dist_sq = (dist_sq + dist_sq.T)/2
-dist_model = scipy.spatial.distance.squareform(dist_sq)
-(r1,_) = scipy.stats.pearsonr(dist_data, dist_model)
-(r2,_) = scipy.stats.pearsonr(dist_spatial, dist_model)
-ss = sklearn.metrics.silhouette_score(spasne_pos,cluster_label)
-quant_eval_spasne = [r1,r2,ss]
-adata.obs['spasne_pos_x'] = spasne_pos[:,0]
-adata.obs['spasne_pos_y'] = spasne_pos[:,1]
-```
-Visualizing spots from SpaSNE embedding
-```
-matplotlib.rcParams['font.size'] = 12.0
-fig, axes = plt.subplots(1, 1, figsize=(6,5))
-domains="gt"
-num_celltype=len(adata.obs[domains].unique())
-adata.uns[domains+"_colors"]=list(plot_color[:num_celltype])
-titles = 'spaSNE, ' + 'r1 = %.2f'% quant_eval_spasne[0] + ', r2 = %.2f'%quant_eval_spasne[1] + ', s = %.2f'%quant_eval_spasne[2]
-ax=sc.pl.scatter(adata,alpha=1,x="spasne_pos_x",y="spasne_pos_y",color=domains,title=titles,color_map=plot_color,show=False,size=sz,ax = axes)
-ax.axis('off')
-ax.axes.invert_xaxis()
-
-```
-![Fig](/images/mouse_visualCortex_spaSNE_result.png)
 
 # 6. Contact information
 
