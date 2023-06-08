@@ -37,7 +37,7 @@ def distribute(p, src_begin, src_end, start_point, length):
     
     return len_max  
     
-def denoise(rank, gene, sample_info, sample_info_denoise):
+def spe_alft(rank, gene, sample_info, sample_info_spe_alft):
 
 	sample_info_position = get_coords(sample_info.index)
 	n = len(sample_info_position)
@@ -97,7 +97,7 @@ def denoise(rank, gene, sample_info, sample_info_denoise):
 #-------------------------
 		x0 = int((sample_info['x'][indices[i][0]] - x_min) / dx + 0.5)
 		y0 = int((sample_info['y'][indices[i][0]] - y_min) / dy + 0.5)
-		sample_info_denoise[gene][indices[i][0]] = a_inv[y0][x0]
+		sample_info_spe_alft[gene][indices[i][0]] = a_inv[y0][x0]
 
 	if rank == 0:
 		print ("para_neighbors = ", para_neighbors, "para_neighbors_threashold = ", para_neighbors_threashold, "dx = ", dx, "dy = ", dy, "perc = ", perc)
@@ -112,7 +112,7 @@ def main():
 	sys.stdout.flush()
 
 	for id in range(9, 13):
-		filename_genelist = "../data/geneList_" + str(id) + ".out"
+		filename_genelist = "data/geneList_" + str(id) + ".out"
 		
 		if rank == 0:
 			geneList = np.loadtxt(filename_genelist, delimiter=',', dtype = str)
@@ -143,7 +143,7 @@ def main():
 			gene = geneList[isrc]
 			
 			filename = gene + ".csv"
-			folderpath = "../data/heart" + str(id) + "/"
+			folderpath = "data/heart" + str(id) + "/"
 			file_location = folderpath + filename
 			if rank % 100 == 0:
 				print("rank = ", rank, "input = ", file_location)
@@ -156,16 +156,16 @@ def main():
 				sys.stdout.flush()
 				ig = ig + 1
 
-			sample_info_denoise = sample_info.copy()
-			denoise(rank, gene, sample_info, sample_info_denoise)
+			sample_info_spe_alft = sample_info.copy()
+			spe_alft(rank, gene, sample_info, sample_info_spe_alft)
 			
 			filename = gene + ".csv"
-			filepath = "../data/heart/heart_out_lfft_" + str(id) + "/"
+			filepath = "data/heart_out_" + str(id) + "/"
 			file_location = filepath + filename
 			if rank % 100 == 0:
 				print("rank = ", rank, "out = ", file_location)
 				sys.stdout.flush()
-			sample_info_denoise.to_csv(file_location)
+			sample_info_spe_alft.to_csv(file_location)
 		
 if __name__ == "__main__":
 	sys.exit(main())	

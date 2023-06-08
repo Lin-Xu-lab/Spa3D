@@ -10,9 +10,9 @@ def get_coords(index):
     
 def main():
 
-	counts = pd.read_csv('../data/adata_heart_9_data.csv', index_col = 0)
+	counts = pd.read_csv('data/adata_heart_9_data.csv', index_col = 0)
 	geneList = counts.columns.to_numpy()
-	np.savetxt("../data/geneList_9.out", geneList, delimiter=',', fmt = '%s')
+	np.savetxt("data/geneList_9.out", geneList, delimiter=',', fmt = '%s')
 
 	i = 0
 
@@ -20,7 +20,7 @@ def main():
 		sample_info = get_coords(counts.index)
 		sample_info[gene] = counts[gene]
 		filename = gene + ".csv"
-		folderpath = "../data/heart9/"
+		folderpath = "data/heart9/"
 		file_location = folderpath + filename
 		print(i, file_location)
 		sample_info.to_csv(file_location)

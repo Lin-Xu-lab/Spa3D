@@ -10,10 +10,10 @@ def get_coords(index):
     
 def main():
 
-	for id in range(17, 18):
+	for id in range(9, 12):
 
-		filename_data_input = "../data/adata_heart_" + str(id) + "_data.csv"
-		filename_data_output = "../data/adata_heart_" + str(id) + "_data_lfft_filter_25_17_30x30_002.csv"
+		filename_data_input = "data/adata_heart_" + str(id) + "_data.csv"
+		filename_data_output = "data/adata_heart_" + str(id) + "_data_spe.csv"
 
 		counts = pd.read_csv(filename_data_input, index_col = 0)
 		geneList = counts.columns.to_numpy()
@@ -22,7 +22,7 @@ def main():
 		i = 0
 		for gene in geneList:
 			filename = gene + ".csv"
-			folderpath = "../data/heart_out_lfft_" + str(id) + "/"
+			folderpath = "data/heart_out_" + str(id) + "/"
 			file_location = folderpath + filename
 			print (" i = ", i, "file = ", file_location)
 			sample_info = pd.read_csv(file_location, index_col = 0)
